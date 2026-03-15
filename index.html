@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP · Alessandro 40 Anni</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a1628;
+    --blue-royal: #0d2159;
+    --blue-mid: #1a3a8f;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-bright: #ffd966;
+    --gold-pale: #f5e6b8;
+    --white: #fff8ee;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: var(--blue-deep);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-pale);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(26,58,143,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(13,33,89,0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(10,22,40,1) 0%, transparent 80%);
+    z-index: 0;
+  }
+
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold-bright) 0%, var(--gold) 60%, transparent 100%);
+    animation: float linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeDown 1s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .diamond-frame {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 44px;
+    width: 160px;
+    height: 160px;
+  }
+
+  .diamond-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--blue-royal) 0%, var(--blue-mid) 100%);
+    transform: rotate(45deg);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(201,168,76,0.4), inset 0 0 20px rgba(201,168,76,0.1);
+  }
+
+  .diamond-frame::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    transform: rotate(45deg);
+    border: 1px solid rgba(201,168,76,0.5);
+  }
+
+  .diamond-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--gold-bright);
+    text-shadow: 0 0 20px rgba(255,217,102,0.8), 0 0 40px rgba(201,168,76,0.4);
+    z-index: 1;
+  }
+
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-bright);
+    text-shadow: 0 0 30px rgba(255,217,102,0.5);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-pale);
+    opacity: 0.8;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .divider-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .event-info {
+    text-align: center;
+    margin-bottom: 32px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .event-date {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+
+  .event-place {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--gold-pale);
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  .form-card {
+    background: linear-gradient(145deg, rgba(13,33,89,0.8) 0%, rgba(10,22,40,0.9) 100%);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    padding: 36px 32px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(201,168,76,0.2);
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .form-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .field-group { margin-bottom: 22px; }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    background: rgba(10,22,40,0.8);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 2px;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,0.25);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: rgba(245,230,184,0.3);
+    font-style: italic;
+  }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  select option { background: var(--blue-deep); color: var(--white); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+  .radio-option { flex: 1; min-width: 120px; }
+  .radio-option input { display: none; }
+
+  .radio-option label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    transition: all 0.25s;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    color: var(--gold-pale);
+    background: rgba(10,22,40,0.5);
+    margin: 0;
+  }
+
+  .radio-option input:checked + label {
+    background: rgba(201,168,76,0.2);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    box-shadow: 0 0 12px rgba(201,168,76,0.2);
+  }
+
+  .radio-option label:hover {
+    border-color: var(--gold-light);
+    background: rgba(201,168,76,0.1);
+  }
+
+  /* Menù bambini */
+  .menu-bimbi-section {
+    background: rgba(10,22,40,0.5);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 16px;
+    margin-top: 8px;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.6);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .menu-bimbi-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .menu-bimbi-row select { margin: 0; font-size: 0.95rem; padding: 10px 36px 10px 12px; }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .qty-btn {
+    width: 30px; height: 30px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .qty-btn:hover { background: rgba(201,168,76,0.3); }
+
+  .qty-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold-bright);
+    min-width: 22px;
+    text-align: center;
+  }
+
+  .remove-menu-btn {
+    background: transparent;
+    border: none;
+    color: rgba(201,168,76,0.35);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px 6px;
+    transition: color 0.2s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .remove-menu-btn:hover { color: var(--gold); }
+
+  .add-menu-btn {
+    background: transparent;
+    border: 1px dashed rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 4px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .add-menu-btn:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 28px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%);
+    background-size: 200% auto;
+    border: none;
+    border-radius: 2px;
+    color: var(--blue-deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-position 0.4s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  }
+
+  .btn-submit:hover {
+    background-position: right center;
+    box-shadow: 0 4px 30px rgba(201,168,76,0.6);
+    transform: translateY(-1px);
+  }
+
+  .btn-submit:active { transform: translateY(0); }
+
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .thankyou-icon { font-size: 3rem; margin-bottom: 16px; filter: drop-shadow(0 0 12px rgba(255,217,102,0.6)); }
+
+  .thankyou h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255,217,102,0.4);
+  }
+
+  .thankyou p { font-size: 1.1rem; color: var(--gold-pale); opacity: 0.85; line-height: 1.7; }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.4);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 480px) {
+    .form-card { padding: 24px 18px; }
+    .field-row { grid-template-columns: 1fr; }
+    .header-name { font-size: 2.2rem; }
+    .diamond-frame { width: 130px; height: 130px; }
+    .diamond-number { font-size: 2.2rem; }
+    .menu-bimbi-row { grid-template-columns: 1fr auto auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="diamond-frame">
+      <div class="diamond-number">40</div>
+    </div>
+    <div class="header-title">Conferma di Presenza</div>
+    <div class="header-name">Alessandro</div>
+    <div class="header-sub">compie 40 anni</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+  <div class="event-info">
+    <div class="event-date">Domenica 19 Aprile 2026 · ore 13:00</div>
+    <div class="event-place">Ristorante Domus Hernica<br>Via Giovanni Sulpicio 28 · Veroli (FR)</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+  <div class="form-card" id="formCard">
+    <div class="form-title">✦ Conferma la tua presenza ✦</div>
+
+    <div class="field-group">
+      <label>Nome e Cognome</label>
+      <input type="text" id="nome" placeholder="es. Mario Rossi">
+    </div>
+
+    <div class="field-group">
+      <label>Partecipi al pranzo?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="presenza" id="si" value="Sì, ci sarò">
+          <label for="si">✓ &nbsp;Sì, ci sarò</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="presenza" id="no" value="Purtroppo non posso">
+          <label for="no">✗ &nbsp;Non posso</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="dettagli" style="display:none">
+
+      <!-- N° persone e bambini -->
+      <div class="field-row">
+        <div class="field-group">
+          <label>N° Persone adulte</label>
+          <input type="number" id="adulti" min="1" max="30" value="1">
+        </div>
+        <div class="field-group">
+          <label>N° Bambini</label>
+          <input type="number" id="bambini" min="0" max="15" value="0">
+        </div>
+      </div>
+
+      <!-- Menù bambini dinamico -->
+      <div id="menuBimbiGroup" style="display:none" class="field-group">
+        <label>Menù Bambini — dettaglio</label>
+        <div class="menu-bimbi-section">
+          <div class="section-label">Tipo di menù e quantità per ciascuno</div>
+          <div id="menuBimbiRows"></div>
+          <button class="add-menu-btn" onclick="aggiungiMenuBimbi()">＋ Aggiungi un menù</button>
+        </div>
+      </div>
+
+      <!-- Intolleranze campo libero -->
+      <div class="field-group">
+        <label>Intolleranze / Allergie alimentari</label>
+        <textarea id="intolleranze" placeholder="es. celiachia, allergia alle noci, intolleranza al lattosio, vegetariano… oppure lascia vuoto se nessuna"></textarea>
+      </div>
+
+      <!-- Note -->
+      <div class="field-group">
+        <label>Note aggiuntive</label>
+        <textarea id="note" placeholder="Qualsiasi altra informazione utile…"></textarea>
+      </div>
+
+    </div>
+
+    <button class="btn-submit" onclick="invia()">📲 Invia Conferma via WhatsApp</button>
+  </div>
+
+  <div class="thankyou" id="thankyou">
+    <div class="thankyou-icon">🥂</div>
+    <h2>Grazie mille!</h2>
+    <p>La tua conferma è stata inviata ad Alessandro.<br>A presto il 19 Aprile!</p>
+  </div>
+
+  <div class="footer">Alessandro · 40 Anni · 19 Aprile 2026</div>
+
+</div>
+
+<script>
+  // Particles
+  (function() {
+    const c = document.getElementById('particles');
+    for (let i = 0; i < 35; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const s = Math.random() * 14 + 4;
+      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*-20}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*0.6+0.2};`;
+      c.appendChild(p);
+    }
+  })();
+
+  const menuOptions = [
+    'Pasta in bianco + cotoletta',
+    'Pasta al pomodoro + cotoletta',
+    'Pasta in bianco + bastoncini di pesce',
+    'Pasta al pomodoro + bastoncini di pesce',
+    'Menù personalizzato (da concordare)',
+  ];
+
+  let menuIdCounter = 0;
+
+  function aggiungiMenuBimbi() {
+    menuIdCounter++;
+    const id = menuIdCounter;
+    const row = document.createElement('div');
+    row.className = 'menu-bimbi-row';
+    row.id = `menuRow${id}`;
+
+    // Select menù
+    const sel = document.createElement('select');
+    sel.id = `menuSel${id}`;
+    menuOptions.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt; o.textContent = opt;
+      sel.appendChild(o);
+    });
+
+    // Qty
+    const qtyDiv = document.createElement('div');
+    qtyDiv.className = 'qty-control';
+    qtyDiv.innerHTML = `
+      <button class="qty-btn" type="button" onclick="cambiaQty(${id},-1)">−</button>
+      <span class="qty-value" id="qty${id}">1</span>
+      <button class="qty-btn" type="button" onclick="cambiaQty(${id},1)">+</button>
+    `;
+
+    // Remove
+    const rmBtn = document.createElement('button');
+    rmBtn.className = 'remove-menu-btn';
+    rmBtn.type = 'button';
+    rmBtn.innerHTML = '✕';
+    rmBtn.title = 'Rimuovi';
+    rmBtn.onclick = () => document.getElementById(`menuRow${id}`)?.remove();
+
+    row.appendChild(sel);
+    row.appendChild(qtyDiv);
+    row.appendChild(rmBtn);
+    document.getElementById('menuBimbiRows').appendChild(row);
+  }
+
+  function cambiaQty(id, delta) {
+    const el = document.getElementById(`qty${id}`);
+    if (el) el.textContent = Math.max(1, parseInt(el.textContent) + delta);
+  }
+
+  // Presenza toggle
+  document.querySelectorAll('input[name="presenza"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('dettagli').style.display =
+        r.value === 'Sì, ci sarò' ? 'block' : 'none';
+    });
+  });
+
+  // Bambini toggle menù
+  document.getElementById('bambini').addEventListener('input', function() {
+    const grp = document.getElementById('menuBimbiGroup');
+    const show = parseInt(this.value) > 0;
+    grp.style.display = show ? 'block' : 'none';
+    if (show && document.getElementById('menuBimbiRows').children.length === 0) {
+      aggiungiMenuBimbi();
+    }
+  });
+
+  function invia() {
+    const nome = document.getElementById('nome').value.trim();
+    const presenza = document.querySelector('input[name="presenza"]:checked');
+    if (!nome) { alert('Per favore inserisci il tuo nome.'); return; }
+    if (!presenza) { alert('Per favore indica se puoi partecipare.'); return; }
+
+    let msg = `🥂 *RSVP — 40 Anni di Alessandro*\n\n`;
+    msg += `👤 *Nome:* ${nome}\n`;
+    msg += `✉️ *Presenza:* ${presenza.value}\n`;
+
+    if (presenza.value === 'Sì, ci sarò') {
+      const adulti = document.getElementById('adulti').value;
+      const bambini = document.getElementById('bambini').value;
+      msg += `👥 *Persone adulte:* ${adulti}\n`;
+      msg += `🧒 *Bambini:* ${bambini}\n`;
+
+      if (parseInt(bambini) > 0) {
+        const rows = document.querySelectorAll('[id^="menuRow"]');
+        if (rows.length > 0) {
+          msg += `\n🍽️ *Menù bambini:*\n`;
+          rows.forEach(row => {
+            const idNum = row.id.replace('menuRow','');
+            const menu = document.getElementById(`menuSel${idNum}`)?.value;
+            const qty  = document.getElementById(`qty${idNum}`)?.textContent;
+            if (menu) msg += `   • ${qty}x ${menu}\n`;
+          });
+        }
+      }
+
+      const intolleranze = document.getElementById('intolleranze').value.trim();
+      if (intolleranze) msg += `\n⚠️ *Intolleranze/Allergie:*\n   ${intolleranze}\n`;
+
+      const note = document.getElementById('note').value.trim();
+      if (note) msg += `\n📝 *Note:* ${note}\n`;
+    }
+
+    msg += `\n📅 *19 Aprile 2026 · ore 13:00*\n📍 Ristorante Domus Hernica, Veroli (FR)`;
+
+    window.open(`https://wa.me/393298243748?text=${encodeURIComponent(msg)}`, '_blank');
+
+    document.getElementById('formCard').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  }
+</script>
+</body>
+</html>
